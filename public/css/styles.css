@@ -1,0 +1,106 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+#formularioLibro, #listadoLibros {
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-footer {
+    background-color: transparent;
+    border-top: none;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.card-body {
+    flex: 1;
+}
+
+.card-title, .card-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#libroForm .btn-primary {
+    min-width: 120px;
+}
+
+.pagination {
+    margin-bottom: 0;
+}
+
+#infoResultados {
+    margin-bottom: 0;
+}
+
+#imagenPreviewContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#imagenPreview {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+button {
+    margin: 0 5px;
+}
+
+.modal-body {
+    display: flex;
+    align-items: center;
+}
+
+.modal-image {
+    flex: 1;
+}
+
+.modal-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.modal-info {
+    flex: 2;
+}
+
+/* Ajustes específicos para el contenedor de tarjetas */
+#librosContainer {
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    max-width: 1200px; /* Ancho máximo para evitar que se expanda demasiado en pantallas grandes */
+}
+
+/* Estilos mejorados para responsividad */
+@media (max-width: 767px) {
+    #librosContainer {
+        /* Ajustes específicos para pantallas móviles */
+        margin: 0 auto; /* Centra el contenedor horizontalmente */
+    }
+}

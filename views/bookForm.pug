@@ -1,0 +1,35 @@
+#formularioLibro(style='display: none;')
+    h2 Agregar/Editar Libro
+    form#libroForm
+        input#libroId(type='hidden')
+        .mb-3
+            label.form-label(for='titulo') Título
+            input#titulo.form-control(type='text' required='')
+        .mb-3
+            label.form-label(for='autor') Autor
+            input#autor.form-control(type='text' required='')
+        .row
+            .col-md-6.mb-3
+                label.form-label(for='isbn') ISBN
+                input#isbn.form-control(type='text' required='')
+            .col-md-6.mb-3
+                label.form-label(for='publishYear') Año de Publicación
+                input#publishYear.form-control(type='number' required='')
+        .mb-3
+            label.form-label(for='genero') Género
+            select#genero.form-select(required='')
+                option(value='') Seleccione un género
+                option(value='Ficción') Ficción
+                option(value='No ficción') No ficción
+                option(value='Ciencia ficción') Ciencia ficción
+                option(value='Misterio') Misterio
+        .row.mb-3
+            .col-md-8
+                label.form-label(for='imagen') Imagen
+                input#imagen.form-control(type='file' accept='image/*')
+            .col-md-4
+                div#imagenPreviewContainer(style='display: none;')
+                    img#imagenPreview(style='width: 100px; height: auto;')
+        .text-center
+            button#guardarBtn.btn.btn-primary(type='submit') Guardar
+            button#regresarBtn.btn.btn-secondary(type='button') Regresar

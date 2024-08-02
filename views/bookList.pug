@@ -1,0 +1,26 @@
+#listadoLibros
+    h2 Listado de Libros
+    .row.g-3.mb-3
+        .col-12.col-md-4
+            input#busqueda.form-control(type='text' placeholder='Buscar por título, autor o ISBN')
+        .col-12.col-md-4
+            select#filtroGenero.form-select
+                option(value='') Todos los géneros
+                option(value='Ficción') Ficción
+                option(value='No ficción') No ficción
+                option(value='Ciencia ficción') Ciencia ficción
+                option(value='Misterio') Misterio
+        .col-12.col-md-4
+            select#resultadosPorPagina.form-select
+                option(value='6') 6 por página
+                option(value='12') 12 por página
+                option(value='24') 24 por página
+
+    #librosContainer.row.row-cols-1.row-cols-md-3.row-cols-lg-4.g-4
+
+    .row.mt-3
+        .col-12
+            nav(aria-label='Paginación de libros')
+                ul#paginacion.pagination.justify-content-center
+        .col-12.text-center.mt-2
+            p#infoResultados
