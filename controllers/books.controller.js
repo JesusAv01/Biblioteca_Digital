@@ -109,14 +109,7 @@ module.exports = {
     updateBook: async (req, res) => {
         try {
             const { bookId } = req.params;
-
             const { title, author, publishYear, isbn, description, genero } = req.body;
-            console.log('Book ID:', bookId);
-            console.log('Title:', title);
-            console.log('Author:', author);
-            console.log('ISBN:', isbn);
-            console.log('Publish Year:', publishYear);
-            console.log('Genero:', genero);
             const newImagePath = req.file ? path.join('uploads', 'images', req.file.filename) : null;
 
             const book = await Book.findById(bookId);
@@ -142,10 +135,8 @@ module.exports = {
                 });
             }
 
-            // Eliminar la imagen existente si se proporciona una nueva
-            if (newImagePath && book.imagePath) {
-                fs.unlinkSync(path.resolve(book.imagePath));
-            }
+            // Guardar la ruta anterior de la imagen
+            const oldImagePath = book.imagePath;
 
             // Actualizar solo los campos que han sido proporcionados
             if (title !== undefined) book.title = title;
@@ -154,7 +145,23 @@ module.exports = {
             if (isbn !== undefined) book.isbn = isbn;
             if (description !== undefined) book.description = description;
             if (genero !== undefined) book.genero = genero;
-            if (newImagePath) book.imagePath = newImagePath;
+
+            // Si se proporciona una nueva imagen, actualizar la ruta de la imagen
+            if (newImagePath) {
+                book.imagePath = newImagePath;
+            } else if (isbn !== undefined) {
+                // Cambiar el nombre del archivo de la imagen si se actualiza el ISBN y no se proporciona una nueva imagen
+                const oldImageDir = path.dirname(oldImagePath);
+                const oldImageExt = path.extname(oldImagePath);
+                const newImageName = `${isbn}${oldImageExt}`;
+                const newImagePath = path.join(oldImageDir, newImageName);
+
+                // Renombrar el archivo de imagen
+                fs.renameSync(oldImagePath, newImagePath);
+
+                // Actualizar la ruta de la imagen en la base de datos
+                book.imagePath = newImagePath;
+            }
 
             const updatedBook = await book.save();
 
